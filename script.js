@@ -11,9 +11,11 @@ function getMovie()
 		$.ajax(
 		{
 			url: url,
-			type:'GET',
-			success: function(response){
-			console.log(response);
+			type:'GET'
+		})
+		.then((response)=>
+		{
+			console.log("Hi Promises");
 			 var output='';
 			 output+=`
 			 <div class="col-md-4">
@@ -42,12 +44,11 @@ function getMovie()
 			 </div>
 			 `
 			 $("#movie").html(output);
-			},
-			error : function(error){
-			console.log(error)
-			}
 		})
-	
+		.catch((err)=>
+		{
+			console.log(error)
+		});
 }
 
 $(document).ready(function()
@@ -64,8 +65,9 @@ $(document).ready(function()
 		$.ajax(
 		{
 			url: url,
-			type:'GET',
-			success: function(response){
+			type:'GET'
+		})
+		.then((response)=>{
 			console.log(response);
 			//alert(response.Search[0].Title)
 			var movies=response.Search;
@@ -83,11 +85,10 @@ $(document).ready(function()
 				`;
 			});
 			$("#movies").html(output);
-			},
-			error : function(error){
-			console.log(error)
-			}
 		})
+		.catch((err)=>{
+			console.log(err);
+		});
 
 	};
 });
